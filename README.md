@@ -3,6 +3,8 @@ Learning - getting flask app to work on AWS using ECS
 
 TODO - https://medium.com/@smirnov.am/running-flask-in-production-with-docker-1932c88f14d0
 
+https://www.bogotobogo.com/DevOps/Docker/Docker-Flask-ALB-ECS.php
+
 ## deploying
 
 Follow steps in this link to test https://linuxacademy.com/blog/linux-academy/deploying-a-containerized-flask-application-with-aws-ecs-and-docker/
