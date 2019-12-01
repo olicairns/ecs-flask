@@ -5,6 +5,8 @@ TODO - https://medium.com/@smirnov.am/running-flask-in-production-with-docker-19
 
 https://www.bogotobogo.com/DevOps/Docker/Docker-Flask-ALB-ECS.php
 
+https://towardsdatascience.com/how-to-do-rapid-prototyping-with-flask-uwsgi-nginx-and-docker-on-openshift-f0ef144033cb
+
 ## deploying
 
 Follow steps in this link to test https://linuxacademy.com/blog/linux-academy/deploying-a-containerized-flask-application-with-aws-ecs-and-docker/
