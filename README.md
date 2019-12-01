@@ -7,6 +7,8 @@ https://www.bogotobogo.com/DevOps/Docker/Docker-Flask-ALB-ECS.php
 
 https://towardsdatascience.com/how-to-do-rapid-prototyping-with-flask-uwsgi-nginx-and-docker-on-openshift-f0ef144033cb
 
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-14-04
+
 ## deploying
 
 Follow steps in this link to test https://linuxacademy.com/blog/linux-academy/deploying-a-containerized-flask-application-with-aws-ecs-and-docker/
