@@ -1,6 +1,5 @@
 MODEL_PATH = "bin/market-invoice-lgb.pkl"
 
-
 MODEL_FEATURE_LIST = [
     "Price Grade",
     "Face Value",

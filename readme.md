@@ -22,15 +22,27 @@ AWS cli - https://docs.aws.amazon.com/polly/latest/dg/setup-aws-cli.html
 
 Fits classifier based on bin/market-invoice-data.csv & saves model binary as .pkl file
 
+Also fits 'Shap' explainer, that can explain feature impacts on model prediction, also saving as pkl.
     conda config --add channels conda-forge \
     conda env create -n ecsdemo -f environment.yml 
     conda activate ecsdemo
     python3 src/model/fit_model.py
 
+TODO - add custom sklearn transformer to demo
+
+
 ## rebuild and run docker image locally
+
 build a livescoring API as docker image (flask+nginx+conda)
     docker build -t oli5679/ecsdemo .
     docker run  -p 80:80 oli5679/ecsdemo
+
+
+TODO - not 100% sure I'm actually using NGINX :)
+
+TODO - investigate updating base docker image to 3.8, and slimming down image a bit
+
+TODO - investigate why this doesn't work by running main.py outside of docker. Some form of configuration error? 
 
 
 ## test local api
@@ -45,7 +57,6 @@ body
     Value)_Facevalue": 1}, "model_score": 0.06014613151916984, "date_time": 1576418241.493108}
 
 ## push to ECR
-
 setup AWS cli, look up account id and then run the following commands
 
     aws ecr create-repository --repository-name flask-ecs-demo-2
@@ -58,10 +69,14 @@ setup AWS cli, look up account id and then run the following commands
 
     docker push [account-id].dkr.ecr.eu-west-2.amazonaws.com/flask-ecs-demo-2
 
+TODO - investigate adding unit tests + Jenkins build pipeline 
 
 ## deploy app on ECS
 
 follow step 4 and onwards from here https://linuxacademy.com/blog/linux-academy/deploying-a-containerized-flask-application-with-aws-ecs-and-docker/
+
+
+TODO - investigate automating with teraform/jenkins, and also following best practices on security/IAM
 
 ## test app 
 
@@ -75,10 +90,12 @@ body
     "Currency_GBP": 1, "Currency_USD": 0, "Discount On (Advance or Face Value)_Advance": 0, "Discount On (Advance or Face
     Value)_Facevalue": 1}, "model_score": 0.06014613151916984, "date_time": 1576418241.493108}
 
-## other handy resources
+## other useful resources
 
 https://www.bogotobogo.com/DevOps/Docker/Docker-Flask-ALB-ECS.php
 
 https://towardsdatascience.com/how-to-do-rapid-prototyping-with-flask-uwsgi-nginx-and-docker-on-openshift-f0ef144033cb
 
 https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-14-04
+
+https://aws.amazon.com/blogs/devops/set-up-a-build-pipeline-with-jenkins-and-amazon-ecs/

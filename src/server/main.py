@@ -9,6 +9,7 @@ import datetime
 import lightgbm as lgb
 import logging
 import numpy as np
+import shap
 
 import config
 
@@ -19,7 +20,9 @@ Rest API for querying model
 
 app = flask.Flask(__name__)
 
-model = pickle.load(open(config.MODEL_PATH, "rb"))
+MODEL = pickle.load(open(config.MODEL_PATH, "rb"))
+
+EXPLAINER = shap.TreeExplainer(MODEL)
 
 
 @app.errorhandler(404)
@@ -48,13 +51,18 @@ def generate_model_score():
     features_dict = request_payload["model_features"]
     assert list(features_dict.keys()) == config.MODEL_FEATURE_LIST
     features_array = np.array([list(features_dict.values())])
-    global model
-    model_pred = model.predict_proba(features_array)[0, 1]
+    # this is a bit hacky not sure if there is better way?
+    global MODEL
+    model_pred = MODEL.predict_proba(features_array)[0, 1]
+    global EXPLAINER
+    shap_vals = list(EXPLAINER.shap_values(features_array)[1][0])
+    labelled_shap_values = dict(zip(config.MODEL_FEATURE_LIST, shap_vals))
     now = datetime.datetime.now()
     return json.dumps(
         {
             "model_inputs": features_dict,
-            "model_score": model_pred,
+            "target_prediction": model_pred,
+            "shap_impact": labelled_shap_values,
             "date_time": now.timestamp(),
         }
     )
@@ -67,5 +75,3 @@ if __name__ == "__main__":
 
     logger.info("running app")
     app.run(debug=False, host="0.0.0.0", port=80)
-
-

@@ -28,7 +28,7 @@ COPY src/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY src/server/main.py /app/main.py
 COPY src/server/config.py /app/config.py
 
-# copy model binary
+# copy model and explainer binaries
 COPY bin/market-invoice-lgb.pkl bin/market-invoice-lgb.pkl
 
 CMD [ "python3", "/app/main.py" ]
