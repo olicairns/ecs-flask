@@ -31,7 +31,9 @@ def main():
     model = lgb.LGBMClassifier()
     model.fit(X_dum, y)
     pickle.dump(model, open(OUTPUT_BIN_PATH, "wb"))
-    print(X_dum.head(1))
+    print("example record")
+    print("----------------------")
+    print(X_dum.head(1).to_dict(orient="records"))
 
 
 if __name__ == "__main__":

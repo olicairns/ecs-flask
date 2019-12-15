@@ -21,13 +21,14 @@ dependencies:
   - patsy
   - pip
   - pytest
-  - python=3.7.3
+  - python=3.6
   - scikit-learn
   - scipy
   - seaborn
   - shap
   - statsmodels
   - sympy
+  - uwsgi
   - pip:
       - sklearn2pmml
       - git+https://github.com/darenr/scikit-optimize
