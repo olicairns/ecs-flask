@@ -32,6 +32,7 @@ build a livescoring API as docker image (flask+nginx+conda)
     docker build -t oli5679/ecsdemo .
     docker run  -p 80:80 oli5679/ecsdemo
 
+
 ## test local api
 post to localhost:80/score to test live scoring
 
@@ -73,3 +74,11 @@ body
     "Annualised Gross Yield %": 14.164038846995776, "expected_duration": 31, "prev_settles": 0, "Currency_EUR": 0,
     "Currency_GBP": 1, "Currency_USD": 0, "Discount On (Advance or Face Value)_Advance": 0, "Discount On (Advance or Face
     Value)_Facevalue": 1}, "model_score": 0.06014613151916984, "date_time": 1576418241.493108}
+
+## other handy resources
+
+https://www.bogotobogo.com/DevOps/Docker/Docker-Flask-ALB-ECS.php
+
+https://towardsdatascience.com/how-to-do-rapid-prototyping-with-flask-uwsgi-nginx-and-docker-on-openshift-f0ef144033cb
+
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-14-04
