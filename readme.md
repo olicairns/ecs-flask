@@ -37,13 +37,9 @@ build a livescoring API as docker image (flask+nginx+conda)
     docker build -t oli5679/ecsdemo .
     docker run  -p 80:80 oli5679/ecsdemo
 
+TODO - get gunicorn working on ecs
 
-TODO - not 100% sure I'm actually using NGINX :)
-
-TODO - investigate updating base docker image to 3.8, and slimming down image a bit
-
-TODO - investigate why this doesn't work by running main.py outside of docker. Some form of configuration error? 
-
+TODO - add NGINX
 
 ## test local api
 post to localhost:80/score to test live scoring
@@ -59,15 +55,17 @@ body
 ## push to ECR
 setup AWS cli, look up account id and then run the following commands
 
-    aws ecr create-repository --repository-name flask-ecs-demo-2
+    aws ecr create-repository --repository-name flask-ecs-demo
 
     aws ecr get-login --region eu-west-2 --no-include-email
 
 [run the login snippet]
 
-    docker tag flask-ecs-demo-2:latest [account-id].dkr.ecr.eu-west-2.amazonaws.com/flask-ecs-demo-2
+[replace with actual account id]
 
-    docker push [account-id].dkr.ecr.eu-west-2.amazonaws.com/flask-ecs-demo-2
+    docker tag oli5679/ecsdemo:latest 782247268784.dkr.ecr.eu-west-2.amazonaws.com/flask-ecs-demo
+
+    docker push 782247268784.dkr.ecr.eu-west-2.amazonaws.com/flask-ecs-demo
 
 TODO - investigate adding unit tests + Jenkins build pipeline 
 
@@ -76,7 +74,11 @@ TODO - investigate adding unit tests + Jenkins build pipeline
 follow step 4 and onwards from here https://linuxacademy.com/blog/linux-academy/deploying-a-containerized-flask-application-with-aws-ecs-and-docker/
 
 
-TODO - investigate automating with teraform/jenkins, and also following best practices on security/IAM
+TODO - investigate automating with teraform/jenkins, and also increasign security/IAM
+
+TODO - investigate autoscaling and logging
+
+TODO - investigate eks
 
 ## test app 
 

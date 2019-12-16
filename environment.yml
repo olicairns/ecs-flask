@@ -5,13 +5,8 @@ channels:
 dependencies:
   - black
   - flask
+  - gunicorn
   - ipython
-  - jupyter
-  - jupyter_client
-  - jupyter_console
-  - jupyter_core
-  - jupyterlab
-  - jupyterlab_server
   - lightgbm
   - matplotlib
   - matplotlib-base
@@ -21,15 +16,8 @@ dependencies:
   - patsy
   - pip
   - pytest
-  - python=3.6
-  - scikit-learn
+  - python=3.7
   - scipy
   - seaborn
   - shap
-  - statsmodels
-  - sympy
-  - uwsgi
-  - pip:
-      - sklearn2pmml
-      - git+https://github.com/darenr/scikit-optimize
 prefix: //anaconda3/envs/ecsdemo

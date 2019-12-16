@@ -1,5 +1,4 @@
-# flask nginx miniconda
-FROM cameroncruz/flask-nginx-uwsgi-miniconda:python3.6
+FROM continuumio/miniconda3
 
 # clean up impage
 RUN apt-get update && apt-get install -y \
@@ -9,6 +8,10 @@ RUN apt-get update && apt-get install -y \
 RUN groupadd -r myuser && useradd -r -g myuser myuser
 WORKDIR /app
 
+# add nginx
+RUN apt-get install -y --no-install-recommends \
+    libatlas-base-dev gfortran nginx supervisor
+
 # Install conda environment and add to path
 COPY environment.yml /app/environment.yml
 RUN conda config --add channels conda-forge \
@@ -16,20 +19,24 @@ RUN conda config --add channels conda-forge \
     && rm -rf /opt/conda/pkgs/* 
 ENV PATH /opt/conda/envs/ecsdemo/bin:$PATH
 
-# expose on port 80
+# expose on port 8080
 EXPOSE 80
+
+CMD [ "nginx", "-g", |daemon off;”]
+
 
 # activate conda environment
 CMD ["bash", "conda activate ecsdemo"]
 
-## needed to follow convention of flask nginx miniconda 
-# /etc/supervisor/conf.d/supervisord.conf and /app/main.py paths
-COPY src/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY src/server/main.py /app/main.py
-COPY src/server/config.py /app/config.py
+# coppy server and startup script
+COPY src src
+COPY start.sh start.sh
 
-# copy model and explainer binaries
+# copy model binary
 COPY bin/market-invoice-lgb.pkl bin/market-invoice-lgb.pkl
 
-CMD [ "python3", "/app/main.py" ]
+# start gunicorn - todo, configure with Nginx
+#CMD ["bash" ,"start.sh"]
+
+CMD [ "python3", "src/server/main.py" ]
 

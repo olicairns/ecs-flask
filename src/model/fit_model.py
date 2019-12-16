@@ -24,27 +24,6 @@ DROP_COLS = [
     "Advance Date",
 ]
 
-TEST_DICT = {
-    "Price Grade": 6.0,
-    "Face Value": 18318.0,
-    "Advance": 16486.2,
-    "Advance %": 90.0,
-    "Discount %": 1.0,
-    "Outstanding Principal": 0.0,
-    "Face Value (GBP)": 18318.0,
-    "Advance (GBP)": 16486.2,
-    "Outstanding Principal (GBP)": 0.0,
-    "Annualised Gross Yield %": 14.164038846995776,
-    "expected_duration": 31,
-    "prev_settles": 0,
-    "Currency_EUR": 0,
-    "Currency_GBP": 1,
-    "Currency_USD": 0,
-    "Discount On (Advance or Face Value)_Advance": 0,
-    "Discount On (Advance or Face Value)_Facevalue": 1,
-}
-
-
 def main():
     raw = pd.read_csv(INPUT_PATH).drop(columns=DROP_COLS)
     y = raw[TARGET_COL]
