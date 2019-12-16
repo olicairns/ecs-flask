@@ -94,8 +94,7 @@ lookup url on ECS console, and post to url + /score
     Value)_Facevalue": 1}, "model_score": 0.06014613151916984, "date_time": 1576418241.493108}
 
 
-## other useful resources
-
+## other links
 
 https://www.bogotobogo.com/DevOps/Docker/Docker-Flask-ALB-ECS.php
 
