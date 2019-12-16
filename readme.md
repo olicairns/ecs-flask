@@ -1,12 +1,12 @@
 # ECS demo
 
-Example of deploying machine learning model API on AWS using docker+flask+nginx+conda
+Example of deploying machine learning model API on AWS using docker+flask+conda+nginx+gunicorn
 
-Based on these resources:
+Based on this resource:
 
 https://linuxacademy.com/blog/linux-academy/deploying-a-containerized-flask-application-with-aws-ecs-and-docker/
 
-https://github.com/cameroncruz/flask-nginx-uwsgi-miniconda
+Work in progress
 
 ## prerequestites
 
@@ -22,8 +22,6 @@ AWS cli - https://docs.aws.amazon.com/polly/latest/dg/setup-aws-cli.html
 
 Fits classifier based on bin/market-invoice-data.csv & saves model binary as .pkl file
 
-Also fits 'Shap' explainer, that can explain feature impacts on model prediction, also saving as pkl.
-
     conda config --add channels conda-forge \
     conda env create -n ecsdemo -f environment.yml 
     conda activate ecsdemo
@@ -37,6 +35,8 @@ TODO - add custom sklearn transformer to demo
 build a livescoring API as docker image (flask+nginx+conda)
     docker build -t oli5679/ecsdemo .
     docker run  -p 80:80 oli5679/ecsdemo
+
+Also fits 'Shap' explainer, that can explain feature impacts on model prediction, also saving as pkl.
 
 TODO - get gunicorn working on ecs
 
