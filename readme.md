@@ -23,6 +23,7 @@ AWS cli - https://docs.aws.amazon.com/polly/latest/dg/setup-aws-cli.html
 Fits classifier based on bin/market-invoice-data.csv & saves model binary as .pkl file
 
 Also fits 'Shap' explainer, that can explain feature impacts on model prediction, also saving as pkl.
+
     conda config --add channels conda-forge \
     conda env create -n ecsdemo -f environment.yml 
     conda activate ecsdemo
@@ -44,7 +45,7 @@ TODO - add NGINX
 ## test local api
 post to localhost:80/score to test live scoring
 
-body
+*body*
 
     {"model_inputs": {"Price Grade": 6.0, "Face Value": 18318.0, "Advance": 16486.2, "Advance %": 90.0, "Discount %": 1.0,
     "Outstanding Principal": 0.0, "Face Value (GBP)": 18318.0, "Advance (GBP)": 16486.2, "Outstanding Principal (GBP)": 0.0,
@@ -84,16 +85,17 @@ TODO - investigate eks
 
 lookup url on ECS console, and post to url + /score
 
-body
+*body*
 
     {"model_inputs": {"Price Grade": 6.0, "Face Value": 18318.0, "Advance": 16486.2, "Advance %": 90.0, "Discount %": 1.0,
     "Outstanding Principal": 0.0, "Face Value (GBP)": 18318.0, "Advance (GBP)": 16486.2, "Outstanding Principal (GBP)": 0.0,
     "Annualised Gross Yield %": 14.164038846995776, "expected_duration": 31, "prev_settles": 0, "Currency_EUR": 0,
     "Currency_GBP": 1, "Currency_USD": 0, "Discount On (Advance or Face Value)_Advance": 0, "Discount On (Advance or Face
     Value)_Facevalue": 1}, "model_score": 0.06014613151916984, "date_time": 1576418241.493108}
-    
+
 
 ## other useful resources
+
 
 https://www.bogotobogo.com/DevOps/Docker/Docker-Flask-ALB-ECS.php
 
