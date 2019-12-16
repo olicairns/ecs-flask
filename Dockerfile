@@ -8,10 +8,6 @@ RUN apt-get update && apt-get install -y \
 RUN groupadd -r myuser && useradd -r -g myuser myuser
 WORKDIR /app
 
-# add nginx
-RUN apt-get install -y --no-install-recommends \
-    libatlas-base-dev gfortran nginx supervisor
-
 # Install conda environment and add to path
 COPY environment.yml /app/environment.yml
 RUN conda config --add channels conda-forge \
@@ -21,9 +17,6 @@ ENV PATH /opt/conda/envs/ecsdemo/bin:$PATH
 
 # expose on port 8080
 EXPOSE 80
-
-CMD [ "nginx", "-g", |daemon off;”]
-
 
 # activate conda environment
 CMD ["bash", "conda activate ecsdemo"]
